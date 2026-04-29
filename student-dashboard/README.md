@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# 📚 React Student Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete student dashboard built with React as part of a 3-lab progressive learning series.
 
-## Available Scripts
+<img width="948" height="470" alt="image" src="https://github.com/user-attachments/assets/f20585a9-ef2f-4f44-92d3-1695a7a61a62" />
 
-In the project directory, you can run:
+-
 
-### `npm start`
+<img width="945" height="473" alt="image" src="https://github.com/user-attachments/assets/0f8f3b7d-aa8f-439b-999e-9e6c985e3b37" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 📊 Lab Completion
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Lab | Topics | Status |
+|-----|--------|--------|
+| Lab 01 | Components, Props, Styling | ✅ |
+| Lab 02 | State, Effects, Interactivity | ✅ |
+| Lab 03 | Context API, Forms, Validation | ✅ |
 
-### `npm run build`
+## ✨ Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🔍 Live search by name or major
+- ⭐ Favorite toggle with counter
+- 📊 Sort by Name or GPA
+- 🌓 Light/Dark theme toggle
+- 📝 Add student form with validation
+- 🗑️ Remove student
+- 💾 localStorage persistence
+- ⏳ Loading spinner
+- 📱 Responsive design
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React 18
+- Context API
+- CSS3 (Custom Properties)
+- PropTypes
+- localStorage
 
-### `npm run eject`
+## 🚀 Quick Start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd student-dashboard
+npm install
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Project Structure
+```bash
+student-dashboard/
+├── src/
+│   ├── components/
+│   │   ├── StudentCard.jsx
+│   │   ├── CourseTag.jsx
+│   │   ├── StatBadge.jsx
+│   │   ├── DashboardHeader.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── SortControls.jsx
+│   │   ├── AddStudentForm.jsx
+│   │   └── LoadingSpinner.jsx
+│   ├── context/
+│   │   ├── ThemeContext.jsx
+│   │   └── StudentContext.jsx
+│   ├── styles/
+│   │   └── App.css
+│   └── App.js
+└── package.json
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌿 Git Branches
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Branch | Contains |
+|--------|----------|
+| `main` | Complete project (All 3 labs) |
+| `lab-01` | Lab 01 only |
+| `lab-02` | Labs 01 - 02 |
+| `lab-03` | All 3 labs |
 
-## Learn More
+## 📝 Form Validation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Field | Rule |
+|-------|------|
+| Full Name | Required |
+| Student ID | Unique & Numeric |
+| Major | Required |
+| GPA | 0.0 - 4.0 |
+| Courses | Optional |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📱 Responsive Design
 
-### Code Splitting
+| Screen | Cards per row |
+|--------|---------------|
+| Desktop | 4 |
+| Tablet | 2-3 |
+| Mobile | 1 |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 👨‍💻 Author
 
-### Analyzing the Bundle Size
+Name : [**Mashudh Ahmed**](www.linkedin.com/in/mashudhahmed)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
