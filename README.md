@@ -87,13 +87,6 @@ student-dashboard/
 | GPA | 0.0 - 4.0 |
 | Courses | Optional |
 
-## 📱 Responsive Design
-
-| Screen | Cards per row |
-|--------|---------------|
-| Desktop | 4 |
-| Tablet | 2-3 |
-| Mobile | 1 |
 
 ## 👨‍💻 Author
 
