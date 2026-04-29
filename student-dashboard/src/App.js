@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './styles/App.css';
+import './App.css';
 import DashboardHeader from './components/DashboardHeader';
 import StudentCard from './components/StudentCard';
 import SearchBar from './components/SearchBar';
