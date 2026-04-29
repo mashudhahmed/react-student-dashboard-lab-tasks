@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
+import { useStudents } from '../context/StudentContext';
 
-const SortControls = ({ sortBy, onSortChange }) => {
+const SortControls = () => {
+  const { sortBy, setSortBy } = useStudents();
+  
   const options = [
     { value: 'default', label: '📋 Default' },
     { value: 'name', label: '📝 Name (A-Z)' },
@@ -12,7 +14,7 @@ const SortControls = ({ sortBy, onSortChange }) => {
       {options.map(opt => (
         <button
           key={opt.value}
-          onClick={() => onSortChange(opt.value)}
+          onClick={() => setSortBy(opt.value)}
           style={{
             padding: '8px 20px',
             background: sortBy === opt.value ? '#6366f1' : 'white',
@@ -30,11 +32,6 @@ const SortControls = ({ sortBy, onSortChange }) => {
       ))}
     </div>
   );
-};
-
-SortControls.propTypes = {
-  sortBy: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired,
 };
 
 export default SortControls;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import CourseTag from './CourseTag';
 import StatBadge from './StatBadge';
 
-const StudentCard = ({ name, id, gpa, major, courses, isFavorite, onFavoriteToggle }) => {
+const StudentCard = ({ name, id, gpa, major, courses, isFavorite, onFavoriteToggle, onRemove }) => {
   const avatarInitial = name.charAt(0).toUpperCase();
   
   const courseColors = {
@@ -22,22 +22,38 @@ const StudentCard = ({ name, id, gpa, major, courses, isFavorite, onFavoriteTogg
           <h3>{name}</h3>
           <div className="student-id">ID: {id}</div>
         </div>
-        <button
-          onClick={onFavoriteToggle}
-          style={{
-            background: 'none',
-            border: 'none',
-            fontSize: '24px',
-            cursor: 'pointer',
-            marginLeft: 'auto',
-            color: isFavorite ? '#f59e0b' : '#d1d5db',
-            transition: 'transform 0.2s',
-          }}
-          onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-          onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-        >
-          {isFavorite ? '⭐' : '☆'}
-        </button>
+        <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
+          <button
+            onClick={onFavoriteToggle}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '22px',
+              cursor: 'pointer',
+              color: isFavorite ? '#f59e0b' : '#d1d5db',
+              transition: 'transform 0.2s',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+          >
+            {isFavorite ? '⭐' : '☆'}
+          </button>
+          <button
+            onClick={onRemove}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '18px',
+              cursor: 'pointer',
+              color: '#ef4444',
+              transition: 'transform 0.2s',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+          >
+            🗑️
+          </button>
+        </div>
       </div>
       <div className="student-details">
         <StatBadge label="Major" value={major} />
@@ -60,11 +76,13 @@ StudentCard.propTypes = {
   courses: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFavorite: PropTypes.bool,
   onFavoriteToggle: PropTypes.func,
+  onRemove: PropTypes.func,
 };
 
 StudentCard.defaultProps = {
   isFavorite: false,
   onFavoriteToggle: () => {},
+  onRemove: () => {},
 };
 
 export default StudentCard;

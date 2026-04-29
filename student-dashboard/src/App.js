@@ -1,69 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './App.css';
+import { ThemeProvider } from './context/ThemeContext';
+import { StudentProvider, useStudents } from './context/StudentContext';
 import DashboardHeader from './components/DashboardHeader';
 import StudentCard from './components/StudentCard';
 import SearchBar from './components/SearchBar';
 import SortControls from './components/SortControls';
+import AddStudentForm from './components/AddStudentForm';
 import LoadingSpinner from './components/LoadingSpinner';
 
-function App() {
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('default');
-  const [favorites, setFavorites] = useState({});
-
-  // Simulated API fetch
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const mockStudents = [
-        { id: 'STU001', name: 'Alice Johnson', major: 'Computer Science', gpa: 3.8, courses: ['Mathematics', 'Computer Science', 'Physics'] },
-        { id: 'STU002', name: 'Bob Smith', major: 'Physics', gpa: 3.5, courses: ['Physics', 'Mathematics', 'Chemistry'] },
-        { id: 'STU003', name: 'Carol Davis', major: 'Biology', gpa: 3.9, courses: ['Biology', 'Chemistry', 'Mathematics'] },
-        { id: 'STU004', name: 'David Wilson', major: 'Mathematics', gpa: 3.7, courses: ['Mathematics', 'Physics', 'Computer Science'] },
-        { id: 'STU005', name: 'Emma Brown', major: 'Computer Science', gpa: 3.6, courses: ['Computer Science', 'Mathematics', 'English'] },
-      ];
-      setStudents(mockStudents);
-      setLoading(false);
-    }, 1500);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Filter students based on search
-  const filteredStudents = students.filter(student =>
-    student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    student.major.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Update document title
-  useEffect(() => {
-    document.title = `Dashboard - ${filteredStudents.length} Students`;
-  }, [filteredStudents.length]);
-
-  // Sort students
-  const getSortedStudents = () => {
-    const sorted = [...filteredStudents];
-    
-    if (sortBy === 'name') {
-      return sorted.sort((a, b) => a.name.localeCompare(b.name));
-    }
-    if (sortBy === 'gpa') {
-      return sorted.sort((a, b) => b.gpa - a.gpa);
-    }
-    return sorted; // default order
-  };
-
-  // Toggle favorite
-  const toggleFavorite = (studentId) => {
-    setFavorites(prev => ({
-      ...prev,
-      [studentId]: !prev[studentId]
-    }));
-  };
-
-  // Calculate favorite count
-  const favoriteCount = Object.values(favorites).filter(isFav => isFav).length;
+// This component uses the student context
+const DashboardContent = () => {
+  const { loading, getSortedStudents, favorites, toggleFavorite, removeStudent } = useStudents();
 
   const navItems = [
     { label: 'Dashboard', link: '/' },
@@ -71,6 +19,13 @@ function App() {
     { label: 'Courses', link: '/courses' },
     { label: 'Settings', link: '/settings' },
   ];
+
+  const sortedStudents = getSortedStudents();
+
+  // Update document title when student count changes
+  useEffect(() => {
+    document.title = `Dashboard - ${sortedStudents.length} Students`;
+  }, [sortedStudents.length]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -82,26 +37,38 @@ function App() {
         title="Student Dashboard"
         tagline="Track academic progress and manage student information"
         navItems={navItems}
-        favoriteCount={favoriteCount}
       />
-      <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-      <SortControls sortBy={sortBy} onSortChange={setSortBy} />
+      <AddStudentForm />
+      <SearchBar />
+      <SortControls />
       <div className="student-grid">
-        {getSortedStudents().map((student) => (
+        {sortedStudents.map((student) => (
           <StudentCard
             key={student.id}
             {...student}
             isFavorite={favorites[student.id] || false}
             onFavoriteToggle={() => toggleFavorite(student.id)}
+            onRemove={() => removeStudent(student.id)}
           />
         ))}
       </div>
-      {getSortedStudents().length === 0 && (
+      {sortedStudents.length === 0 && (
         <div style={{ textAlign: 'center', padding: '50px', color: '#6b7280' }}>
           No students found matching your search.
         </div>
       )}
     </div>
+  );
+};
+
+// Main App component with providers
+function App() {
+  return (
+    <ThemeProvider>
+      <StudentProvider>
+        <DashboardContent />
+      </StudentProvider>
+    </ThemeProvider>
   );
 }
 
