@@ -90,7 +90,7 @@ student-dashboard/
 
 ## 👨‍💻 Author
 
-Name : [**Mashudh Ahmed**](www.linkedin.com/in/mashudhahmed)
+Name : [**Mashudh Ahmed**](www.linkedin.com/in/mashudhahmed) | Mail: mashudh.ahmed@outlook.com
 
 
 ## 📄 License
