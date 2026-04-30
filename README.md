@@ -92,7 +92,3 @@ student-dashboard/
 
 Name : [**Mashudh Ahmed**](www.linkedin.com/in/mashudhahmed) | Mail: mashudh.ahmed@outlook.com
 
-
-## 📄 License
-
-MIT
